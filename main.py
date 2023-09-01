@@ -8,16 +8,24 @@ def load_data_from_file():
 
 data = load_data_from_file()
 
-name = input("Imię zwierzaka: ")
-weight = float(input("Waga: "))
-sex = input("Płeć: ")
-fiv_felv = input("Czy stwierdzono FIV/FeLv? (Tak/Nie): ").upper()
-castration_sterilization = input("Czy kot jest wykastrowany/wysterylizowany?(Tak/Nie): ").upper()
+while True:
+    name = input("Imię zwierzaka: ")
+    weight = float(input("Waga: "))
+    sex = input("Płeć: ")
+    fiv_felv = input("Czy stwierdzono FIV/FeLv? (Tak/Nie): ").upper()
+    castration_sterilization = input("Czy kot jest wykastrowany/wysterylizowany?(Tak/Nie): ").upper()
 
-data.append({"name": name, "weight": weight, "sex": sex, "fiv_felv": fiv_felv, "castration": castration_sterilization})
+    data.append({"name": name, "weight": weight, "sex": sex, "fiv_felv": fiv_felv, "castration": castration_sterilization})
+    with open("data_file.json", "w") as file:
+        json.dump(data, file, indent=4)
 
-with open("data_file.json", "w") as file:
-    json.dump(data, file)
+    add_another_animal = input("Czy chcesz dodać kolejne zwierzę? (Tak/Nie): ")
+    if add_another_animal.title() == "Tak":
+        continue
+    else:
+        break
+
+    
 
 
 
